@@ -5,7 +5,7 @@ public:
     }
 
 private:
-    string getActual(const string& input) {
+    string getActual(string input) {
         string actualString;
         int hashCount = 0;
 
