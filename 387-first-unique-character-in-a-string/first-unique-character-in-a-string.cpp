@@ -5,7 +5,7 @@ public:
         for(char c : s){
             count[c]++;
         }
-        for(int i = 0; i<s.length(); i++){
+        for(int i = 0; i<s.size(); i++){
             if(count[s[i]] == 1){
                 return i;
             }
