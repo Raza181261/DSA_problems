@@ -17,7 +17,8 @@ public:
 
         while(curr != nullptr){
             if(hashset.count(curr->val) && 
-            (curr -> next == nullptr || !hashset.count(curr->next->val))){
+            (curr -> next == nullptr 
+            || !hashset.count(curr->next->val))){
             tolCount++;
             }
             curr = curr->next;
