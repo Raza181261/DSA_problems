@@ -15,18 +15,25 @@ public:
             return head;
         }
 
-        ListNode* currNode = head;
-        ListNode* nextNode = head->next;
+        // ListNode* currNode = head;
+        // ListNode* nextNode = head->next;
 
 
-        while(nextNode){
-        ListNode* gcdNode = new ListNode(__gcd(currNode->val,nextNode->val));
-            currNode->next = gcdNode;
-            gcdNode->next = nextNode;
+        // while(nextNode){
+        // ListNode* gcdNode = new ListNode(__gcd(currNode->val,nextNode->val));
+        //     currNode->next = gcdNode;
+        //     gcdNode->next = nextNode;
 
-            currNode = nextNode;
-            nextNode = nextNode->next;
-        }
+        //     currNode = nextNode;
+        //     nextNode = nextNode->next;
+        // }
+
+        ListNode* temp = insertGreatestCommonDivisors(head->next);
+
+        ListNode* gcdNode = new ListNode(__gcd(head->val,head->next->val));
+
+        gcdNode->next = temp;
+        head->next = gcdNode;
         return head;
     }
 };
