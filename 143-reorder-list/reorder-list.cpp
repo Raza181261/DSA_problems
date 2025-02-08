@@ -10,37 +10,25 @@
  */
 class Solution {
 public:
-    ListNode* reverseLL(ListNode* head){
-        if(head == NULL || head->next == NULL){
-            return head;
+     ListNode* curr;
+     void solve(ListNode* head){
+        if(head == NULL){
+            return;
         }
-        ListNode* last = reverseLL(head->next);
-        head->next->next = head;
-        head->next = NULL;
-        return last;
-        
-    }
+        solve(head->next);
+        ListNode* temp = curr->next;
+        if(curr->next == NULL){
+            return;
+        } else if(head == curr){
+            head->next = NULL;
+            return;
+        }
+        curr->next = head;
+        head->next = (temp == head) ? NULL : temp;
+        curr = temp;
+     }
     void reorderList(ListNode* head) {
-        ListNode* slow = head;
-        ListNode* fast = head;
-
-        while(fast && fast->next){
-            slow = slow->next;
-            fast = fast->next->next;
-        }
-
-        ListNode* rev = reverseLL(slow);
-        ListNode* curr = head;
-
-        while(rev->next != NULL){
-            ListNode* tempcurr = curr->next;
-            curr->next = rev;
-
-            ListNode* temprev = rev->next;
-            rev->next = tempcurr;
-
-            curr = tempcurr;
-            rev = temprev;
-        }
+       curr = head;
+       solve(head);
     }
 };
