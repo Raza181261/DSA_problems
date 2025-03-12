@@ -3,7 +3,7 @@ public:
     string customSortString(string order, string s) {
        vector<int> index(26,-1);
 
-       for(int i = 0; i<order.length(); i++){
+       for(int i = 0; i<order.size(); i++){
         char ch = order[i];
         index[ch-'a'] = i;
        }
