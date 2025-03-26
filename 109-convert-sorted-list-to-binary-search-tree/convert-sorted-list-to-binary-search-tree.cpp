@@ -35,7 +35,7 @@ public:
         while(fast != NULL && fast->next != NULL){
             slow_prev = slow;
            slow = slow->next;
-           fast = fast->next->next;
+           fast = (fast->next)->next;
         }
         // slow must be point middle 
         TreeNode* root = new TreeNode(slow->val);
