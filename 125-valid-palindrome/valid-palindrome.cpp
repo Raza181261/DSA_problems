@@ -1,29 +1,22 @@
 class Solution {
 public:
     bool isPalindrome(string s) {
+        int left = 0;
+        int right = s.size()-1;
 
-        if(s.size()<=1) return true; // to check if string is null or having 1 character
-        
-        int start = 0;
-        int end = s.size()-1;
-
-        while(start<=end){
-            if(!isalnum(s[start])){
-                start++;
-                continue;
+        while(left < right){
+            while(left<right && !isalnum(s[left])){
+                left++;
             }
-            if(!isalnum(s[end])){
-                end--;
-                continue;
+            while(left<right && !isalnum(s[right])){
+                right--;
             }
-            if(tolower(s[start]) != tolower(s[end]))
-              return false;
-            else{
-            start++;
-            end--;
+            if(tolower(s[left]) != tolower(s[right])){
+                return false;
             }
+            left++;
+            right--;
         }
         return true;
-        
     }
 };
