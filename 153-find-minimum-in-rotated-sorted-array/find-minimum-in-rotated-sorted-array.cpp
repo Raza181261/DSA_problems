@@ -6,12 +6,13 @@ public:
         int r = n-1;
 
         while(l<r){
-            int mid = l+(r-l)/2;
-            if(nums[mid] > nums[r]){
+            int mid = (l+r)/2;
+            if(nums[mid]>nums[r]){
                 l = mid+1;
-            }else{
+            } else {
                 r = mid;
             }
+
         }
         return nums[r];
     }
