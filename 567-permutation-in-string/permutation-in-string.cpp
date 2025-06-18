@@ -19,10 +19,10 @@ public:
         int j = 0;
 
         while(j<m){
-            s2_freq[s2[j] -'a']++;
+            s2_freq[s2[j] - 'a']++;
 
-            if(j-i+1 > n){
-                s2_freq[s2[i]-'a']--;
+            if((j-i+1) > n){
+                s2_freq[s2[i] - 'a']--;
                 i++;
             }
             if(s1_freq == s2_freq){
