@@ -1,55 +1,40 @@
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
 class Solution {
 public:
-    ListNode* merge(ListNode* a, ListNode* b) {
-        // merging two linked list with their head
-        ListNode*c=new ListNode(-1);
-        ListNode*temp=c;
-        while(a!=NULL && b!=NULL) {
-            if(a->val <= b->val) {
-                temp->next=a;
-                a=a->next;
-                temp=temp->next;
-            }
-            else{
-                temp->next=b;
-                b=b->next;
-                temp=temp->next;
-            }
+    ListNode* mergeTwoList(ListNode* l1, ListNode* l2){
+        if(l1 == NULL) return l2;
+        if(l2 == NULL) return l1;
+
+        if(l1->val <= l2->val){
+            l1->next = mergeTwoList(l1->next,l2);
+            return l1;
+        } else {
+            l2->next = mergeTwoList(l1, l2->next);
+            return l2;
         }
-        if(a==NULL) temp->next=b;
-        else temp->next=a;
-        return c->next;
+        return NULL;
     }
-    ListNode* mergeKLists(vector<ListNode*>& arr) { // heads of 'k' linked lists stored in-> arr
-        if(arr.size()==0) return NULL;
-        // method -> 1 - time complexity O(n.klogk)
-        while(arr.size()>1) {
-            ListNode*a=arr[0];
-            arr.erase(arr.begin()); // removing 1st element form vector -> method
-            ListNode*b=arr[0];
-            arr.erase(arr.begin()); // removing 1st element form vector -> method
-            ListNode*c=merge(a,b);
-            arr.push_back(c);
+
+
+    ListNode* partitionAndMerge(int start, int end, vector<ListNode*>& lists){
+        if(start > end){
+            return NULL;
         }
-        // method -> 2 - time complexity O(n.k^2)
-        while(arr.size()>1) {
-            ListNode*a=arr[arr.size()-1];
-            arr.pop_back();
-            ListNode*b=arr[arr.size()-1];
-            arr.pop_back();
-            ListNode*c=merge(a,b);
-            arr.push_back(c);
+        if(start == end){
+            return lists[start];
         }
-        return arr[0];
+        int mid = (start+end)/2;
+        ListNode* L1 = partitionAndMerge(start,mid,lists);
+        ListNode* L2 = partitionAndMerge(mid+1,end,lists);
+
+
+        return mergeTwoList(L1, L2);
+    }
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        int k = lists.size();
+
+        if(k == 0)
+        return NULL;
+
+        return partitionAndMerge(0, k-1, lists);
     }
 };
