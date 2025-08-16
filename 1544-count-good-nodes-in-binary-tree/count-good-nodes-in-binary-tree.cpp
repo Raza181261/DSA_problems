@@ -11,20 +11,20 @@
  */
 class Solution {
 public:
-    int goodNodes(TreeNode* root) {
-        return dfs(root, root->val);
+    void Countgoodnodes(TreeNode* root, int& count, int max){
+        if(!root) return;
+        if(root->val >= max){
+            count++;
+            max = root->val;
+        }
+        Countgoodnodes(root->left,count,max);
+        Countgoodnodes(root->right,count,max);
     }
+    int goodNodes(TreeNode* root) {
+        int count = 0;
+        if(!root) return count;
+        Countgoodnodes(root,count,root->val);
 
-    int dfs(TreeNode* node, int maxVal){
-        if(!node)
-        return 0;
-
-        int good = (node->val >= maxVal) ? 1 : 0;
-        maxVal = max(maxVal,node->val);
-
-        good += dfs(node->left,maxVal);
-        good += dfs(node->right,maxVal);
-
-        return good;
+        return count;
     }
 };
