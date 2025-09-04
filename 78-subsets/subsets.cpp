@@ -7,9 +7,9 @@ public:
         return;
     }
     temp.push_back(nums[i]); //take ith element
-    solve(i+1,nums,temp);
+    solve(i+1,nums,temp); //explore
     temp.pop_back(); //do not take
-    solve(i+1, nums,temp);
+    solve(i+1, nums,temp); //explore 
    }
     vector<vector<int>> subsets(vector<int>& nums) {
         vector<int> temp;
