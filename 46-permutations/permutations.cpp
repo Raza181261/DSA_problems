@@ -22,7 +22,7 @@ public:
         }
      }
     vector<vector<int>> permute(vector<int>& nums) {
-         n = nums.size();
+        n = nums.size();
         vector<int>temp;
         solve(temp, nums);
 
