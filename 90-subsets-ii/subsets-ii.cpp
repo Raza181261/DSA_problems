@@ -12,7 +12,8 @@ public:
         getAllSubset(nums,temp,i+1,result);
 
         temp.pop_back();
-
+       
+        //for remove duplicate from answer
         int idx = i+1;
         while(idx < nums.size() && nums[idx] == nums[idx-1]) idx++;
         
