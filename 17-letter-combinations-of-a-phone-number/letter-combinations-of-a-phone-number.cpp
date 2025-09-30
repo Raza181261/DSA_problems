@@ -1,28 +1,28 @@
 class Solution {
 public:
-    vector<string> result;
+   vector<string> result;
 
-    void solve(int idx, string& digits, string& temp, unordered_map<char, string>mp){
-        if(idx >= digits.length()){
-            result.push_back(temp);
-            return;
-        }
-
-        char ch = digits[idx];
-        string str = mp[ch];
-
-        for(int i = 0; i<str.length(); i++){
-            temp.push_back(str[i]);
-            solve(idx+1, digits, temp, mp);
-            temp.pop_back();
-        }
+   void solve(int idx, string &digits, string &temp, unordered_map<char,string> &mp){
+    if(idx >= digits.length()){
+        result.push_back(temp);
+        return;
     }
+
+    char ch = digits[idx];
+    string str = mp[ch];
+
+    for(int i = 0; i<str.length(); i++){
+        
+        temp.push_back(str[i]); //DO
+        solve(idx+1, digits,temp,mp); //Explore
+        temp.pop_back(); //unDo
+    }
+   }
     vector<string> letterCombinations(string digits) {
         if(digits.length() == 0)
         return {};
 
-        unordered_map<char, string>mp;
-
+        unordered_map<char,string>mp;
         mp['2'] = "abc";
         mp['3'] = "def";
         mp['4'] = "ghi";
@@ -34,7 +34,7 @@ public:
 
         string temp = "";
 
-        solve(0, digits, temp, mp);
+        solve(0,digits,temp,mp);
 
         return result;
     }
