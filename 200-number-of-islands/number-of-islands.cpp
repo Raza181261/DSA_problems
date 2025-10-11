@@ -9,9 +9,9 @@ public:
             return;
         }
 
-        // if (grid[i][j] == '-1') {
-        //     return;
-        // }
+        if (grid[i][j] == '-1') {
+            return;
+        }
 
         grid[i][j] = '$';
 
