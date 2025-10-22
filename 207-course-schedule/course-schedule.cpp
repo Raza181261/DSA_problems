@@ -40,6 +40,7 @@ public:
             int a = vec[0];
             int b = vec[1];
 
+            // b ---> a 
             adj[b].push_back(a);
 
             //arrow from 'b' to 'a'
