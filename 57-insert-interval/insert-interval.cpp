@@ -4,7 +4,6 @@ public:
         int i = 0;
         int n = intervals.size();
         vector<vector<int>> result;
-
         while(i < n){
             if(intervals[i][1] < newInterval[0]){
                 result.push_back(intervals[i]);
@@ -14,7 +13,6 @@ public:
                 //merge
                 newInterval[0] = min(intervals[i][0], newInterval[0]);
                 newInterval[1] = max(intervals[i][1], newInterval[1]);
-
             }
             i++;
         }
@@ -24,6 +22,5 @@ public:
             i++;
         }
         return result;
-
     }
 };
