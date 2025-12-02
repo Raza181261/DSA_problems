@@ -1,31 +1,31 @@
 class Solution {
 public:
     int eraseOverlapIntervals(vector<vector<int>>& intervals) {
-        sort(intervals.begin(), intervals.end());
-
-        int n = intervals.size();
+        sort(begin(intervals),end(intervals));
         int count = 0;
-        int i = 0 , j = 1;
+        int n = intervals.size();
+
+        int i = 0, j =1;
 
         while(j < n){
             vector<int> curr_interval = intervals[i];
             vector<int> next_interval = intervals[j];
 
-            int cs = curr_interval[0];
-            int ce = curr_interval[1];
+            int curr_start = curr_interval[0];
+            int curr_end = curr_interval[1];
 
-            int ns = next_interval[0];
-            int ne = next_interval[1];
+            int next_start = next_interval[0];
+            int next_end = next_interval[1];
 
 
-            if(ce <= ns){
-                i=j;
+            if(curr_end <= next_start){
+                i = j;
                 j++;
-            }else if(ce <= ne){
+            } else if(curr_end <= next_end){
                 j++;
                 count++;
-            }else if(ce > ne){
-                i=j;
+            }else if(curr_end > next_end){
+                i = j;
                 j++;
                 count++;
             }
