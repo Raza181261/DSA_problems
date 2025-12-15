@@ -3,8 +3,8 @@ public:
     int hammingWeight(int n) {
         int count = 0;
        while(n){
-        n = (n & (n-1)); // unset the right most bit 1 convert to 0;
-        count++;
+        count += (n%2); //this gives reminder
+        n /= 2; // this gives simple divide 
        }
         return count;
     }
