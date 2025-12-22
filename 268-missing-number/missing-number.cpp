@@ -7,7 +7,8 @@ public:
         int l = 0, r = n-1;
 
         while(l <= r){
-            int mid = l+(r-l)/2;
+            // int mid = l+(r-l)/2;
+            int mid = r+l/2;
             if(nums[mid] > mid){
                 result = mid;
                 r = mid-1; // go left and explore kia koi element missing tuo nhi
