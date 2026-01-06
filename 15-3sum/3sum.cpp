@@ -8,7 +8,7 @@ public:
         else if(nums[i] + nums[j] < target)
         i++;
 
-        else{
+        else{ //if have duplicates
             while(i<j && nums[i] == nums[i+1]) i++;
             while(i<j && nums[j] == nums[j-1]) j--;
 
