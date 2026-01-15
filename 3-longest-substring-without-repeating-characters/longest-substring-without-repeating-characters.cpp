@@ -6,11 +6,11 @@ public:
         int start = 0;
 
         for(int end = 0; end<s.size(); end++){
-            char currChar = s[end];
-            if(charIndex.find(currChar) != charIndex.end() && charIndex[currChar] >= start){
-                start = charIndex[currChar]+1;
+            char currentChar = s[end];
+            if(charIndex.find(currentChar) != charIndex.end() && charIndex[currentChar] >= start){
+                start = charIndex[currentChar] + 1;
             }
-            charIndex[currChar] = end;
+            charIndex[currentChar] = end;
             maxLength = max(maxLength,end-start+1);
         }
         return maxLength;
