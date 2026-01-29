@@ -17,9 +17,9 @@ public:
         }
         solve(head->next);
         ListNode* temp = curr->next;
-        if(curr->next == NULL){
+        if(curr->next == NULL){ // for even link list
             return;
-        } else if(head == curr){
+        } else if(head == curr){ // for odd link list
             head->next = NULL;
             return;
         }
