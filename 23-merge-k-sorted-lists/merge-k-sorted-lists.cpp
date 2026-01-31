@@ -16,9 +16,9 @@ public:
 
 
     ListNode* partitionAndMerge(int start, int end, vector<ListNode*>& lists){
-        // if(start > end){
-        //     return NULL;
-        // }
+        if(start > end){
+            return NULL;
+        }
         if(start == end){
             return lists[start];
         }
