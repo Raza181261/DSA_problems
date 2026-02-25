@@ -1,22 +1,20 @@
 class Trie {
 public:
     struct trieNode {
-        bool isEndOfWord = false;
+        bool isEndOfword;
         trieNode* children[26];
     };
-
-    trieNode* getNode() {
+     trieNode* getNode() {
         trieNode* newNode = new trieNode();
-        newNode->isEndOfWord = false;
+        newNode->isEndOfword = false;
+
         for (int i = 0; i < 26; i++) {
             newNode->children[i] = NULL;
         }
         return newNode;
     }
     trieNode* root;
-    Trie() {
-        root = getNode(); // create a newNode in root
-    }
+    Trie() { root = getNode(); }
 
     void insert(string word) {
         trieNode* crawler = root;
@@ -30,7 +28,7 @@ public:
             }
             crawler = crawler->children[idx];
         }
-        crawler->isEndOfWord = true;
+        crawler->isEndOfword = true;
     }
 
     bool search(string word) {
@@ -44,10 +42,10 @@ public:
             }
             crawler = crawler->children[idx];
         }
-
-        if (crawler != NULL && crawler->isEndOfWord == true) {
+        if (crawler != NULL && crawler->isEndOfword == true) {
             return true;
         }
+
         return false;
     }
 
@@ -55,7 +53,7 @@ public:
         trieNode* crawler = root;
         int i = 0;
 
-            for (; i < prefix.length(); i++) {
+        for (; i < prefix.length(); i++) {
             char ch = prefix[i];
             int idx = ch - 'a';
 
