@@ -1,63 +1,64 @@
 class WordDictionary {
 public:
-   struct trieNode {
-    bool isEndOfNode;
-    trieNode* children[26];
-   };
-   trieNode* getNode(){
-     trieNode* newNode = new trieNode();
-     newNode->isEndOfNode = false;
-
-     for(int i= 0; i<26; i++){
-        newNode->children[i] = NULL;
-     }
-     return newNode;
-   }
-
-   trieNode* root;
-    WordDictionary() {
-        root = getNode();
+    struct trieNode {
+        trieNode* children[26];
+        bool isEndOfWord;
+    };
+    trieNode* getNode() {
+        trieNode* newNode = new trieNode();
+        newNode->isEndOfWord = false;
+        for (int i = 0; i < 26; i++) {
+            newNode->children[i] = NULL;
+        }
+        return newNode;
     }
-    
+    trieNode* root;
+    WordDictionary() { root = getNode(); }
+
     void addWord(string word) {
         trieNode* crawler = root;
-        for(int i = 0; i<word.length(); i++){
+        for (int i = 0; i < word.length(); i++) {
             char ch = word[i];
             int idx = ch - 'a';
 
-            if(crawler->children[idx] == NULL){
+            if (crawler->children[idx] == NULL) {
                 crawler->children[idx] = getNode();
             }
             crawler = crawler->children[idx];
         }
-        crawler->isEndOfNode = true;
+        crawler->isEndOfWord = true;
     }
 
-    bool searchUtils(trieNode* root, string word){
+    bool searchUtils(trieNode* root, string word) {
         trieNode* crawler = root;
-        for(int i = 0; i<word.length(); i++){
+
+        for (int i = 0; i < word.length(); i++) {
             char ch = word[i];
-            if(ch == '.'){
-                for(int j = 0; j<26; j++){
-                    if(crawler->children[j] != NULL){
-                        if(searchUtils(crawler->children[j],word.substr(i+1)) == true){
+            int idx = ch - 'a';
+            if (ch == '.') {
+                for (int j = 0; j < 26; j++) {
+
+                    if (crawler->children[j] != NULL) {
+                        if (searchUtils(crawler->children[j],
+                                        word.substr(i + 1)) == true) {
                             return true;
                         }
                     }
                 }
-
                 return false;
-            } else if(crawler->children[ch-'a'] == NULL){
+            } else if (!crawler->children[idx]) {
                 return false;
             }
-            crawler = crawler->children[ch-'a'];
+
+            crawler = crawler->children[idx];
         }
-        return (crawler != NULL && crawler->isEndOfNode == true);
+        if (crawler != NULL && crawler->isEndOfWord == true) {
+            return true;
+        }
+        return false;
     }
-    
-    bool search(string word) {
-       return searchUtils(root,word);
-    }
+
+    bool search(string word) { return searchUtils(root, word); }
 };
 
 /**
