@@ -4,16 +4,16 @@ public:
         int curr_length = 1;
         int max_length = 1;
         int n = nums.size();
-        if(n == 0){
+        if (n == 0) {
             return 0;
         }
 
         sort(begin(nums), end(nums));
 
-        for(int i = 1; i < n; i++){
-            if(nums[i] == nums[i-1]){
+        for (int i = 1; i < n; i++) {
+            if (nums[i] == nums[i - 1]) {
                 continue;
-            } else if(nums[i] == nums[i-1]+1){
+            } else if (nums[i] == nums[i - 1] + 1) {
                 curr_length += 1;
             } else {
                 curr_length = 1;
