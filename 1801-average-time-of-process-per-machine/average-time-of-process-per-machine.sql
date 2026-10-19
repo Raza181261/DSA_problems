@@ -11,4 +11,4 @@ ON A.machine_id = B.machine_id AND A.process_id = B.process_id
 
 WHERE A.activity_type = "start" AND b.activity_type = "end"
 
-GROUP BY machine_id
+GROUP BY A.machine_id
